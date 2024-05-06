@@ -60,11 +60,12 @@ Do not use any complex vocabulary. Use simpler words that would be easier to und
             'generateData' => 'required|min:6|string',
         ]);
         $completion = OpenAI::completions()->create([
-            'model' => 'gpt-3.5-turbo-instruct',
+            'model' => 'gpt-4-turbo',                                        
             'prompt' => $datadd, // Hidden prompt
             // 'prompt' => "** act as a content writer with 10 years of experience you have to humanize the text Here's the user input:**\n\n$this->generateData\n\n**Based on the user input,**", // Hidden prompt
-            'max_tokens' => 100,
-            'temperature' => 0,
+            'max_tokens' => 2300,
+            'top_p' => 0.51,                                        
+            'temperature' => 1.46,
         ]);
 
         $this->generateResult =  $completion['choices'][0]['text'];
