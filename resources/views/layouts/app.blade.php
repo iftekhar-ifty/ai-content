@@ -95,7 +95,7 @@
                       fill="#7367F0" />
                 </svg>
               </span>
-                    <span class="app-brand-text demo menu-text fw-bold">Vuexy</span>
+                    <span class="app-brand-text demo menu-text fw-bold">Logo</span>
                 </a>
 
                 <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -108,49 +108,74 @@
 
             <ul class="menu-inner py-1" wire:ignore>
 
+                @if(auth()->user()->type == 'admin')
+                    <li class="menu-item {{ request()->path() == 'dashboard' ? 'active' : '' }}">
+                        <a href="/dashboard" class="menu-link active">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div data-i18n="Dashboards">Dashboards</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->path() == 'admin/user-list' ? 'active' : '' }}">
+                        <a href="/admin/user-list" class="menu-link">
+                            <i class=" menu-icon ti ti-shape"></i>
+                            <div data-i18n="User List">User List
 
-                <li class="menu-item {{ request()->path() == 'dashboard' ? 'active' : '' }}">
-                    <a href="/dashboard" class="menu-link active">
-                        <i class="menu-icon tf-icons ti ti-smart-home"></i>
-                        <div data-i18n="Dashboards">Dashboards</div>
-                    </a>
-                </li>
+                            </div>
+                        </a>
 
-                <li class="menu-item {{ request()->path() == 'local-order-list' ? 'active' : '' }}">
-                    <a href="/admin/user-list" class="menu-link">
-                        <i class=" menu-icon ti ti-shape"></i>
-                        <div data-i18n="User List">User List
+                    </li>
+                    <li class="menu-item {{ request()->path() == 'admin/plan-list' ? 'active' : '' }}">
+                        <a href="/admin/plan-list" class="menu-link">
+                            <i class=" menu-icon ti ti-shape"></i>
+                            <div data-i18n="Subscription Plan">Subscription Plan
 
-                        </div>
-                    </a>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->path() == 'local-order-list' ? 'active' : '' }}">
+                        <a href="/admin/user-list" class="menu-link">
+                            <i class=" menu-icon ti ti-shape"></i>
+                            <div data-i18n="Settings">Settings
 
-                </li>
-                <li class="menu-item {{ request()->path() == 'local-order-list' ? 'active' : '' }}">
-                    <a href="/admin/user-list" class="menu-link">
-                        <i class=" menu-icon ti ti-shape"></i>
-                        <div data-i18n="Subscription Plan">Subscription Plan
+                            </div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->path() == 'local-order-list' ? 'active' : '' }}">
+                        <a href="/admin/user-list" class="menu-link">
+                            <i class=" menu-icon ti ti-shape"></i>
+                            <div data-i18n="Payments">Payments
 
-                        </div>
-                    </a>
-                </li>
-                <li class="menu-item {{ request()->path() == 'local-order-list' ? 'active' : '' }}">
-                    <a href="/admin/user-list" class="menu-link">
-                        <i class=" menu-icon ti ti-shape"></i>
-                        <div data-i18n="Settings">Settings
+                            </div>
+                        </a>
+                    </li>
+                @else
+                    <li class="menu-item {{ request()->path() == '/' ? 'active' : '' }}">
+                        <a href="/" class="menu-link active">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div data-i18n="Go to editor">Go to editor</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->path() == 'user/dashboard' ? 'active' : '' }}">
+                        <a href="/user/dashboard" class="menu-link active">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div data-i18n="Dashboards">Dashboards</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->path() == 'user/plan-list' ? 'active' : '' }}">
+                        <a href="/user/plan-list" class="menu-link active">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div data-i18n="Manage plan">Manage plan</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->path() == 'user/payment-history' ? 'active' : '' }}">
+                        <a href="/user/payment-history" class="menu-link active">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div data-i18n="Payment History">Payment History</div>
+                        </a>
+                    </li>
 
-                        </div>
-                    </a>
-                </li>
 
-                <li class="menu-item {{ request()->path() == 'local-order-list' ? 'active' : '' }}">
-                    <a href="/admin/user-list" class="menu-link">
-                        <i class=" menu-icon ti ti-shape"></i>
-                        <div data-i18n="Payments">Payments
-
-                        </div>
-                    </a>
-                </li>
-
+                @endif
 
 
 
@@ -165,8 +190,8 @@
         <div class="layout-page">
             <!-- Navbar -->
 
-            <nav
-                class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+{{--            @if(auth()->user()->type == 'admin')--}}
+            <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
                 id="layout-navbar">
                 <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
                     <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
@@ -491,7 +516,7 @@
                     <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
                 </div>
             </nav>
-
+{{--            @endif--}}
             <!-- / Navbar -->
 
             <!-- Content wrapper -->

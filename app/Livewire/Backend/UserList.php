@@ -9,6 +9,10 @@ use Livewire\WithPagination;
 class UserList extends Component
 {
     use WithPagination;
+     public function mount()
+    {
+
+    }
     public function render()
     {
         $users = User::query()->latest()->paginate(10);
