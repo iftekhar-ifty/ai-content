@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Backend\User;
 
+use App\Models\Payment;
 use Livewire\Component;
 
 class UserPaymentHistory extends Component
@@ -12,6 +13,7 @@ class UserPaymentHistory extends Component
     }
     public function render()
     {
-        return view('livewire.backend.user.user-payment-history')->layout('layouts.app');
+        $payments = Payment::query()->where('user_id', auth()->id())->get();
+        return view('livewire.backend.user.user-payment-history', compact('payments'));
     }
 }

@@ -18,11 +18,9 @@ class UserTypeMiddleware
         if (auth()->check()) { // Ensure user is authenticated
             $user = auth()->user();
 
-//            if ($user->type === 'admin') {
-//                return redirect('/admin/dashboard');  // Redirect to admin dashboard
-//            } else if ($user->type === 'user') {
-//                return redirect('/user/dashboard');   // Redirect to user dashboard
-//            }
+            if ($user->type != 'admin') {
+                abort(403,'Page not found');
+            }
         }
 
         return $next($request);

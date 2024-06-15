@@ -10,4 +10,9 @@ class Plan extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function userPlan()
+    {
+        return $this->hasOne(UserPlan::class)->latest();
+    }
 }

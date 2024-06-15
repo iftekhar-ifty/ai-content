@@ -38,3 +38,12 @@ copyTextBtn.addEventListener("click", () => {
     copyTextSuccess.classList.remove("!block");
   }, 2000);
 });
+
+// Sidebar toggle
+const dsbBtn = document.getElementById("dsb-btn");
+const dsbContainer = document.getElementById("dsb-container");
+
+dsbBtn.addEventListener("click", () => {
+  dsbContainer.classList.toggle("dsb-open");
+});
+

@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class UserPlan extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'plan_id',
+        'user_id',
+        'subscribed_at',
+        'expire_date',
+        'cancelled_at',
+        'is_active',
+        'word_limit',
+    ];
+
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class);
+    }
 }

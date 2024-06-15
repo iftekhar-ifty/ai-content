@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->integer('plan_id');
             $table->integer('user_id');
+            $table->integer('word_limit')->default(0);
             $table->date('expire_date')->nullable();
             $table->timestamp('subscribed_at');
             $table->timestamp('cancelled_at')->nullable();
+            $table->integer('is_active')->default(0);
             $table->timestamps();
         });
     }

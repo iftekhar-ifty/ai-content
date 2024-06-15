@@ -37,7 +37,7 @@
 
                                 <td>{{ $item->name ?? '' }}</td>
                                 <td>{{ $item->email ?? '' }}</td>
-                                <td>Basic - 1</td>
+                                <td>{{ $item->getLatestUserPlan->plan->name ?? '' }}</td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

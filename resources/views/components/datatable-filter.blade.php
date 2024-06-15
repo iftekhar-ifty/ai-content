@@ -27,12 +27,14 @@
                 </a>
 
             @else
+                @if(isset($actionBtn))
                 <button wire:click="create" type="button"
                         class="btn btn-sm btn-primary  waves-effect waves-light"
                         data-bs-toggle="modal"
                         data-bs-target="#basicModal">
                     {{ $actionBtn ?? '' }}
                 </button>
+                @endif
             @endif
         </div>
     </div>

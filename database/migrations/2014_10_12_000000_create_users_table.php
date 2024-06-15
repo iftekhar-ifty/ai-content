@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('country')->nullable();
             $table->string('state')->nullable();
             $table->ipAddress('ip')->nullable();
+            $table->string('google_id')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

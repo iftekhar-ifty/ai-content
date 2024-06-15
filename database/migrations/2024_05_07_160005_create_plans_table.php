@@ -15,8 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('duration');
+            $table->integer('word_limit');
             $table->integer('price');
+            $table->integer('y_price');
             $table->string('type')->nullable();
+            $table->string('code')->nullable();
             $table->integer('trial_days')->nullable();
             $table->string('currency')->nullable();
             $table->string('interval')->nullable();

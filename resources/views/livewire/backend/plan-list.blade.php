@@ -12,7 +12,7 @@
                     ></x-datatable-filter>
                 </div>
 
-               <x-alert></x-alert>
+                <x-alert></x-alert>
 
                 <div class="table-responsive text-nowrap">
                     <table class="table table-border-bottom-0">
@@ -24,8 +24,12 @@
                             <th> <input type="checkbox" class="customCheckBox"> </th>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Price</th>
+                            <th>Price(Monthly)</th>
+                            <th>Price(Yearly)</th>
+                            <th>Code</th>
                             <th>Type</th>
+                            <th>Word limit</th>
+                            <th>Order By</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
@@ -37,8 +41,12 @@
                                 <td> {{$key + 1}}</td>
 
                                 <td>{{ $item->name ?? '' }}</td>
-                                <td>{{ $item->price ?? '' }}</td>
+                                <td>${{ $item->price ?? '' }}</td>
+                                <td>${{ $item->y_price ?? '' }}</td>
+                                <td>{{ $item->code ?? '' }}</td>
                                 <td>{{ $item->type ?? '' }}</td>
+                                <td>{{ $item->word_limit ?? '' }}</td>
+                                <td>{{ $item->serial ?? '' }}</td>
                                 <td>
                                     @if($item->status == 0)
                                         <span class="badge bg-primary">Active</span>
@@ -81,7 +89,7 @@
                                     <div class="col-lg-4 col-md-6">
 
                                         <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true" wire:ignore.self>
-                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel1">Plan Details</h5>
@@ -105,28 +113,56 @@
                                                                 <label for="">Plan name</label>
                                                                 <input type="text" class="form-control" placeholder="Enter plan name" wire:model="name">
                                                             </div>
-                                                             <div class="form-group col-md-6 mb-2">
-                                                                <label for="">Price</label>
+                                                            <div class="form-group col-md-6 mb-2">
+                                                                <label for="">Word Limit</label>
+                                                                <input type="text" class="form-control" placeholder="Enter plan name" wire:model="word_limit">
+                                                            </div>
+
+                                                            <div class="form-group col-md-6 mb-2">
+                                                                <label for="">Monthly Price (USD)</label>
                                                                 <input type="text" class="form-control" placeholder="Enter plan name" wire:model="price">
                                                             </div>
-                                                             <div class="form-group col-md-12 mb-2">
+                                                            <div class="form-group col-md-6 mb-2">
+                                                                <label for="">Yearly Price (USD)</label>
+                                                                <input type="text" class="form-control" placeholder="Enter plan name" wire:model="y_price">
+                                                            </div>
+
+                                                            <div class="form-group col-md-6 mb-2">
+                                                                <label for="">Code</label>
+                                                                <input type="text" class="form-control" placeholder="Enter code" wire:model="code">
+                                                            </div>
+
+                                                            <div class="form-group col-md-6 mb-2">
                                                                 <label for="">Plan Type</label>
-                                                                 <select name="" wire:model="type" class="form-control" >
-                                                                     <option value="">Select</option>
-                                                                     <option value="trial">Trial version</option>
-                                                                     <option value="one_month">One Month</option>
-                                                                     <option value="four_month">Four Month</option>
-                                                                     <option value="six_month">Six Month</option>
-                                                                     <option value="one_year">One Year</option>
-                                                                 </select>
+                                                                <select name="" wire:model="type" class="form-control" >
+                                                                    <option value="">Select</option>
+                                                                    <option value="trial">Trial version</option>
+                                                                    <option value="one_month">One Month</option>
+                                                                    <option value="four_month">Four Month</option>
+                                                                    <option value="six_month">Six Month</option>
+                                                                    <option value="one_year">One Year</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-6 mb-2">
+                                                                <label for="">Plan Status</label>
+                                                                <select name="" wire:model="status" class="form-control" >
+                                                                    <option value="">Select</option>
+                                                                    <option value="0">Active</option>
+                                                                    <option value="1">Inactive</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-6 mb-2">
+                                                                <label for="">Plan Order By</label>
+                                                                <input type="text" class="form-control" placeholder="1" wire:model="planSerial">
+                                                            </div>
+
+                                                            <div class="form-group col-md-12 mb-2">
+                                                                <label for="">Features <small>[separate features put , ]</small></label>
+                                                                <input type="text" class="form-control" placeholder="features1,features2" wire:model="features">
                                                             </div>
                                                             <div class="form-group col-md-12 mb-2">
-                                                                <label for="">Plan Status</label>
-                                                                 <select name="" wire:model="status" class="form-control" >
-                                                                     <option value="">Select</option>
-                                                                     <option value="0">Active</option>
-                                                                     <option value="1">Inactive</option>
-                                                                 </select>
+                                                                <label for=""> Description</label>
+                                                                <input type="text" class="form-control" placeholder="Description" wire:model="description">
                                                             </div>
 
 

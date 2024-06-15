@@ -57,6 +57,14 @@
     <script src="{{ asset('assets') }}/vendor/js/template-customizer.js"></script>
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{{ asset('assets') }}/js/config.js"></script>
+    <style>
+        .user-dashboard-bg{
+            /*background: #000000!important;*/
+        }
+        .user-layout-page {
+            /*background: black;*/
+        }
+    </style>
 </head>
 
 <body>
@@ -66,7 +74,10 @@
         <!-- Menu -->
         <!-- Menu -->
 
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme
+
+        {{ (request()->path() == 'user/dashboard' || request()->path() == 'user/plan-list' || request()->path() == 'user/payment-history') ? 'user-dashboard-bg' : '' }}
+        ">
             <div class="app-brand demo">
                 <a href="index.html" class="app-brand-link">
               <span class="app-brand-logo demo">
@@ -109,15 +120,15 @@
             <ul class="menu-inner py-1" wire:ignore>
 
                 @if(auth()->user()->type == 'admin')
-                    <li class="menu-item {{ request()->path() == 'dashboard' ? 'active' : '' }}">
-                        <a href="/dashboard" class="menu-link active">
+                    <li class="menu-item {{ request()->path() == 'admin/dashboard' ? 'active' : '' }}">
+                        <a href="/admin/dashboard" class="menu-link active">
                             <i class="menu-icon tf-icons ti ti-smart-home"></i>
                             <div data-i18n="Dashboards">Dashboards</div>
                         </a>
                     </li>
                     <li class="menu-item {{ request()->path() == 'admin/user-list' ? 'active' : '' }}">
                         <a href="/admin/user-list" class="menu-link">
-                            <i class=" menu-icon ti ti-shape"></i>
+                            <i class=" menu-icon ti ti-user"></i>
                             <div data-i18n="User List">User List
 
                             </div>
@@ -126,23 +137,23 @@
                     </li>
                     <li class="menu-item {{ request()->path() == 'admin/plan-list' ? 'active' : '' }}">
                         <a href="/admin/plan-list" class="menu-link">
-                            <i class=" menu-icon ti ti-shape"></i>
+                            <i class=" menu-icon ti ti-crown"></i>
                             <div data-i18n="Subscription Plan">Subscription Plan
 
                             </div>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->path() == 'local-order-list' ? 'active' : '' }}">
-                        <a href="/admin/user-list" class="menu-link">
-                            <i class=" menu-icon ti ti-shape"></i>
+                    <li class="menu-item {{ request()->path() == 'admin/setting' ? 'active' : '' }}">
+                        <a href="/admin/setting" class="menu-link">
+                            <i class=" menu-icon ti ti-settings"></i>
                             <div data-i18n="Settings">Settings
 
                             </div>
                         </a>
                     </li>
                     <li class="menu-item {{ request()->path() == 'local-order-list' ? 'active' : '' }}">
-                        <a href="/admin/user-list" class="menu-link">
-                            <i class=" menu-icon ti ti-shape"></i>
+                        <a href="/admin/payment-list" class="menu-link">
+                            <i class=" menu-icon ti ti-wallet"></i>
                             <div data-i18n="Payments">Payments
 
                             </div>
@@ -187,12 +198,12 @@
         <!-- / Menu -->
 
         <!-- Layout container -->
-        <div class="layout-page">
+        <div class="layout-page  {{ (request()->path() == 'user/dashboard' || request()->path() == 'user/plan-list' || request()->path() == 'user/payment-history') ? 'user-layout-page' : '' }}">
             <!-- Navbar -->
 
-{{--            @if(auth()->user()->type == 'admin')--}}
+            {{--            @if(auth()->user()->type == 'admin')--}}
             <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-                id="layout-navbar">
+                 id="layout-navbar">
                 <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
                     <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                         <i class="ti ti-menu-2 ti-sm"></i>
@@ -516,7 +527,7 @@
                     <i class="ti ti-x ti-sm search-toggler cursor-pointer"></i>
                 </div>
             </nav>
-{{--            @endif--}}
+            {{--            @endif--}}
             <!-- / Navbar -->
 
             <!-- Content wrapper -->
