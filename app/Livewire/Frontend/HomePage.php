@@ -105,7 +105,7 @@ Do not use any complex vocabulary. Use simpler words that would be easier to und
         $maxTokenUse = ceil($wordCount * 1.33);
 
         $completion = OpenAI::chat()->create([
-            'model' => 'gpt-4-turbo',
+            'model' => 'gpt-4o',
             'messages' => [
                 [
                     'role' => 'system',
